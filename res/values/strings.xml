@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accessibility_description">用于在定时亮屏后执行上滑解锁手势，仅做这一个滑动动作，不读取屏幕内容。</string>
+</resources>
