@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <!-- 最低支持 Android 7.0（API 24）：上滑手势 dispatchGesture 就是从 API 24 才有的，
+         再低的版本没有这个无障碍手势接口，做不了这个功能，所以 24 已是这功能的下限。
+         target 33 是为了在新系统上也不触发过严的后台限制。 -->
+    <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="33" />
+
     <application
         android:label="定时亮屏上滑"
         android:icon="@android:drawable/ic_lock_idle_alarm"
