@@ -51,7 +51,11 @@ mkdir -p out classes dex
 javac -source 8 -target 8 -cp "$ANDROID_JAR" -d classes \
   $(find src -name '*.java')
 
-"$D8" --lib "$ANDROID_JAR" --output dex classes
+# Newer D8 (R8 9.x) rejects a bare directory as program input
+# ("Unsupported source file type" for 'classes'), so jar the classes first:
+# a .jar input is accepted by every D8 version.
+(cd classes && jar cf ../out/classes.jar .)
+"$D8" --lib "$ANDROID_JAR" --output dex out/classes.jar
 cp out/app-unsigned.apk out/app.apk
 (cd dex && zip -q ../out/app.apk classes.dex)
 
